@@ -1,16 +1,39 @@
 {
-  "presets": ["es2015", "react"],
+  "presets": [
+    "env",
+    "react"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel",
+      ]
+    },
+    "browser": {
+      "plugins": ["syntax-dynamic-import"]
+    },
+    "server": {
+      "plugins": ["dynamic-import-node"]
+    }
+  },
   "plugins": [
+    [
+      "react-loadable/babel", {
+      "server": true,
+      "webpack": true,
+    }
+    ],
     "transform-object-rest-spread",
     "transform-class-properties",
-    ["module-resolver", {
+    [
+      "module-resolver", {
       "root": ["./app/js"],
       "alias": {
         "Events": "components/Events",
         "Items": "components/Items",
         "pages": "pages"
       }
-    }]
+    }
+    ]
   ]
 }
-
